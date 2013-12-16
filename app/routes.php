@@ -7,6 +7,8 @@
 //});
 
 Route::controller('party', 'PartyController');
+Route::controller('chat', 'ChatController');
+Route::controller('contributions', 'ContributionsController');
 Route::controller('me', 'Me');
 Route::controller('', 'MainController');
 

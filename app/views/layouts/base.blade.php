@@ -60,7 +60,9 @@
                         <li><a href="#"><span class="c-amethyst"><i class="glyphicon glyphicon-calendar"></i> EVENTS</span></a></li>
                         <li><a href="#"><span class="c-carrot"><i class="glyphicon glyphicon-comment"></i> ABOUT</span></a></li>
                         <li><a href="#"><span class="c-greensea"><i class="glyphicon glyphicon-bullhorn"></i> TEAM</span></a></li>
-
+                        @if(Auth::user())
+                        <li><a href="{{URL::to('logout')}}"><span class="c-belizehole"><i class="glyphicon glyphicon-lock"></i> LOGOUT</span></a></li>
+                        @endif
                     </ul>
                 </div><!--/.navbar-collapse -->
             </div>

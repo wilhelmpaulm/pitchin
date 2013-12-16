@@ -11,10 +11,37 @@ $user = Auth::user();
             <div class="panel panel-info">
                 <div class="panel-body">
                     <div id="profilehead" class="text-center c-lightblue fs50">
-                        <i class="fa fa-ticket"></i>
-                        <p>MY EVENTS</p>
+                        <i class="fa fa-gift"></i>
+                        <p>MY PARTIES</p>
                     </div>
                     <div id="profilebody">
+                        <table class="table table-condensed table-striped table-responsive">
+                            <thead>
+                                <tr >
+                                    <th class="bg-lightblue"></th>
+                                </tr>
+                            </thead>
+                            <tbody>
+                                @foreach($parties as $p)
+                                <tr>
+                                    <td>
+                                        
+                                        <div>
+                                            <img src="{{URL::to('party/picture/'.$p->picture)}}" class="img-thumbnail pull-left" style=" width: 50%"/>
+                                            <div style="padding-left: 10px" class="pull-left">
+                                                <a href="{{URL::to('party/manage/'.$p->id)}}"><h3 class="c-teal">{{$p->name}}</h3></a>
+                                                <hr>
+                                                <h5 class="c-brown">{{$p->description}}</h5>
+                                                <h5 class="c-pumpkin ">{{$p->date_start." until ". $p->date_end}}</h5>
+                                                
+                                            </div>
+                                        </div>
+                                    
+                                    </td>
+                                </tr>
+                                @endforeach
+                            </tbody>
+                        </table>
 
                     </div>
                 </div>
@@ -25,7 +52,7 @@ $user = Auth::user();
                 <div class="panel-body">
                     <div id="remindershead" class="text-center c-teal fs50">
                         <i class="glyphicon glyphicon-pencil"></i>
-                        <p>NEW EVENT</p>
+                        <p>NEW PARTY</p>
                     </div>
                     <div id="remindersbody">
                         <form action="{{URL::to('party/add-party')}}" method="POST" enctype="multipart/form-data">
@@ -39,7 +66,7 @@ $user = Auth::user();
                                         <label for="description">Description</label>
                                         <textarea name="description" class="form-control c-teal " id="description"  rows="2" cols="20"></textarea>
                                     </div>
-                                    
+
                                     <div class="form-group c-teal ">
                                         <label for="address">Address</label>
                                         <textarea name="address" class="form-control c-teal " id="address"  rows="2" cols="20"></textarea>
@@ -69,7 +96,7 @@ $user = Auth::user();
                                 </div>
                             </div>
                             <div class="row">
-                               
+
                                 <div class="col-md-6 col-md-offset-3">
                                     <input class="btn btn-default btn-block" type="submit" value="Save Changes" />
                                 </div>
@@ -93,7 +120,14 @@ $user = Auth::user();
             $("#remindersbody").toggle("slow");
         });
 
-
+        $("table").dataTable({
+            "bPaginate": false,
+            "bLengthChange": false,
+            "bFilter": true,
+            "bSort": false,
+            "bInfo": false,
+            "bAutoWidth": false
+        });
 
 
     </script>
