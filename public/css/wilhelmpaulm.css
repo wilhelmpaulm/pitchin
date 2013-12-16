@@ -1,0 +1,198 @@
+.hidden {
+    display: none;
+    visibility: hidden;
+}
+
+@font-face {
+    font-family: 'suil';
+    src: url('../font/Roboto-Light.ttf');
+    src: url('../font/Roboto-Light.ttf') format('truetype');
+    font-weight: normal;
+    font-style: normal;
+}
+
+@font-face {
+    font-family: 'qsb';
+    src: url('../font/Quicksand_Book.otf');
+    /*src: url('../font/Quicksand_Book.ttf') format('truetype');*/
+    font-weight: normal;
+    font-style: normal;
+}
+@font-face {
+    font-family: 'osb';
+    src: url('../font/ostrich-black.ttf');
+    src: url('../font/ostrich-black.ttf') format('truetype');
+    font-weight: normal;
+    font-style: normal;
+    font-size: x-large;
+}
+
+@font-face {
+    font-family: 'rl';
+    src: url('../font/Roboto-Light.ttf');
+    src: url('../font/Roboto-Light.ttf') format('truetype');
+    font-weight: normal;
+    font-style: normal;
+    font-size: x-large;
+}
+@font-face {
+    font-family: 'osr';
+    src: url('../font/ostrich-rounded.ttf');
+    src: url('../font/ostrich-rounded.ttf') format('truetype');
+    font-weight: bold;
+    font-style: normal;
+    /*font-size: x-large;*/
+}
+
+.f-qsb{
+    font-family: 'qsb', "Segoe UI";
+
+}
+.f-osb{
+    font-family: 'osb', "Segoe UI";
+    font-size: 20px;
+
+}
+.f-osr{
+    font-family: 'osr', "Segoe UI";
+    font-size: 20px;
+
+}
+.btn{
+    font-family: 'osb', "Segoe UI";
+    font-size: large;
+
+}
+
+root { 
+    display: block;
+}
+
+body{
+    /*min-width: 1300px; min-height: 800px;*/
+    /*font-family: "rl";*/
+    /*font-family: "Segoe UI";*/
+}
+
+
+.bg-turquoise{background-color: #1ABC9C;}
+.bg-greensea{background-color: #16A085;}
+.bg-peterriver{background-color: #3498DB;}
+.bg-belizehole{background-color: #2980B9;}
+.bg-amethyst{background-color: #9B59B6;}
+.bg-wisteria{background-color: #8E44AD}
+.bg-sunflower{background-color: #F1C40F;}
+.bg-orange{background-color: #F39C12;}
+.bg-carrot{background-color: #E67E22;}
+.bg-pumpkin{background-color: #D35400;}
+.bg-alizarin{background-color: #E74C3C;}
+.bg-pomegranate{background-color: #C0392B;}
+.bg-clouds{background-color: #ECF0F1;}
+.bg-silver{background-color: #BDC3C7;}
+.bg-emerald{background-color: #2ECC71}
+.bg-nephritis{background-color: #27AE60}
+
+.c-turquoise{color: #1ABC9C;}
+.c-greensea{color: #16A085;}
+.c-peterriver{color: #3498DB;}
+.c-belizehole{color: #2980B9;}
+.c-amethyst{color: #9B59B6;}
+.c-wisteria{color: #8E44AD}
+.c-sunflower{color: #F1C40F;}
+.c-orange{color: #F39C12;}
+.c-carrot{color: #E67E22;}
+.c-pumpkin{color: #D35400;}
+.c-alizarin{color: #E74C3C;}
+.c-pomegranate{color: #C0392B;}
+.c-clouds{color: #ECF0F1;}
+.c-silver{color: #BDC3C7;}
+.c-emerald{color: #2ECC71}
+.c-nephritis{color: #27AE60}
+
+.bg-brown{background-color: #632F00;}
+.bg-gray{background-color: #696969;}
+.bg-red{background-color: #E51400;}
+.bg-darkred{background-color: #B81B1B;}
+.bg-orange{background-color: #FF7D23;}
+.bg-green{background-color: #15992A;}
+.bg-lime{background-color: #8CBF26;}
+.bg-lightblue{background-color: #1BA1E2;}
+.bg-blue{background-color: #006AC1;}
+.bg-teal{background-color: #00ABA9;}
+.bg-pink{background-color: #FF76BC;}
+.bg-magenta{background-color: #AE113D;}
+.bg-purple{background-color: #7200AC;}
+.bg-black{background-color: #000;}
+.bg-p1{background-color: #649203;}
+.bg-p2{background-color: #8bb029;}
+.bg-p3{background-color: #f8ffd8;}
+.bg-p4{background-color: #e0daa8;}
+.bg-p5{background-color: #c2bd91;}
+.bg-p6{background-color: #1d4025;}
+.bg-p7{background-color: #45734c;}
+.bg-p8{background-color: #528c37;}
+.bg-p9{background-color: #9abf80;}
+.bg-p10{background-color: #f2f0d0;}
+.bg-s1{background-color: #012d3d;}
+.bg-s2{background-color: #38ad9e;}
+.bg-s3{background-color: #ffeb9e;}
+.bg-s4{background-color: #ff6867;}
+.bg-s5{background-color: #f9fcfc;}
+/*.bg-s5{background-color: #f9fcfc;}*/
+.bg-whitesmoke{background-color: whitesmoke;}
+.bg-white{background-color: white;}
+
+.c-whitesmoke{color: whitesmoke;}
+.c-white{color: white;}
+.c-brown{color: #632F00;}
+.c-gray{color: #696969;}
+.c-red{color: #E51400;}
+.c-darkred{color: #B81B1B;}
+.c-orange{color: #FF7D23;}
+.c-green{color: #15992A;}
+.c-lime{color: #8CBF26;}
+.c-lightblue{color: #1BA1E2;}
+.c-blue{color: #006AC1;}
+.c-teal{color: #00ABA9;}
+.c-pink{color: #FF76BC;}
+.c-magenta{color: #AE113D;}
+.c-purple{color: #7200AC;}
+.c-black{color: #000;}
+.c-p1{background-color: #649203;}
+.c-p2{background-color: #8bb029;}
+.c-p3{background-color: #f8ffd8;}
+.c-p4{background-color: #e0daa8;}
+.c-p5{background-color: #c2bd91;}
+.c-p6{background-color: #1d4025;}
+.c-p7{background-color: #45734c;}
+.c-p8{background-color: #528c37;}
+.c-p9{background-color: #9abf80;}
+.c-p10{background-color: #f2f0d0;}
+.c-s1{background-color: #012d3d;}
+.c-s2{background-color: #38ad9e;}
+.c-s3{background-color: #ffeb9e;}
+.c-s4{background-color: #ff6867;}
+.c-s5{background-color: #f9fcfc;}
+
+.pad20{ padding: 20px}
+.pad40{ padding: 40px}
+.pad60{ padding: 60px}
+
+.mar20{margin: 20px}
+.mar40{margin: 40px}
+.mar60{margin: 60px}
+
+.fs20{font-size: 20px}
+.fs30{font-size: 30px}
+.fs40{font-size: 40px}
+.fs50{font-size: 50px}
+.fs60{font-size: 60px}
+.fs70{font-size: 70px}
+.fs80{font-size: 80px}
+.fs90{font-size: 90px}
+.fs100{font-size: 100px}
+
+.a-white li {
+    
+    
+}
