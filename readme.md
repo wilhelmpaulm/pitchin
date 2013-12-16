@@ -4,6 +4,8 @@
 
 ## Development
 
+###This project is built with my love and the [Laravel Framework](http://laravel.com)
+
 This application is intended in the partial fulfillment of
 one of my college courses HUCOMIN which is human computer interactions
 
