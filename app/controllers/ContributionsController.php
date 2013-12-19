@@ -14,7 +14,7 @@ class ContributionsController extends BaseController {
     }
 
     public function postDeleteContribution() {
-        $p = Party_contribution::find("id")->delete();
+        Party_contribution::find(Input::get("id"))->delete();
         return Redirect::back();
     }
 

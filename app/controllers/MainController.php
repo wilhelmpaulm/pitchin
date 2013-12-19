@@ -9,6 +9,7 @@ class MainController extends BaseController {
     public function postLogin() {
         Auth::attempt(array('email' => Input::get("username"), 'password' => Input::get("password")));
         if (Auth::user()) {
+            BadgesController::addBadge(Auth::user()->id, 1);
             return Redirect::to('me/index');
         } else {
             return Redirect::to('index');
@@ -40,7 +41,10 @@ class MainController extends BaseController {
             $u->picture = "picture_" . $u->id . "." . Input::file('picture')->getClientOriginalExtension();
         }
         $u->save();
-
+        
+        Auth::loginUsingId($u->id);
+//        Auth::attempt(array('email' => $u->email, 'password' => $u->password));
+        
         return Redirect::to("me/index");
     }
 

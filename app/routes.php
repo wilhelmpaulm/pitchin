@@ -8,6 +8,7 @@
 
 Route::controller('party', 'PartyController');
 Route::controller('chat', 'ChatController');
+Route::controller('reminders', 'RemindersController');
 Route::controller('contributions', 'ContributionsController');
 Route::controller('me', 'Me');
 Route::controller('', 'MainController');

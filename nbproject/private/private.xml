@@ -2,13 +2,6 @@
 <project-private xmlns="http://www.netbeans.org/ns/project-private/1">
     <editor-bookmarks xmlns="http://www.netbeans.org/ns/editor-bookmarks/2" lastBookmarkId="0"/>
     <open-files xmlns="http://www.netbeans.org/ns/projectui-open-files/2">
-        <group>
-            <file>file:/D:/wamp/www/potluck/app/views/base/index.blade.php</file>
-            <file>file:/D:/wamp/www/potluck/app/controllers/Me.php</file>
-            <file>file:/D:/wamp/www/potluck/app/views/layouts/me.blade.php</file>
-            <file>file:/D:/wamp/www/potluck/app/routes.php</file>
-            <file>file:/D:/wamp/www/potluck/app/controllers/MainController.php</file>
-            <file>file:/D:/wamp/www/potluck/app/views/me/events.blade.php</file>
-        </group>
+        <group/>
     </open-files>
 </project-private>

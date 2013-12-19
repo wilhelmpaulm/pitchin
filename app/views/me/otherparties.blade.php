@@ -11,8 +11,8 @@ $user = Auth::user();
             <div class="panel panel-info">
                 <div class="panel-body">
                     <div id="profilehead" class="text-center c-lightblue fs50">
-                        <i class="fa fa-gift"></i>
-                        <p>MY PARTIES</p>
+                        <i class="fa fa-search"></i>
+                        <p>SEARCH PARTIES</p>
                     </div>
                     <div id="profilebody">
                         <table class="table table-condensed table-striped table-responsive">
@@ -25,15 +25,25 @@ $user = Auth::user();
                                 @foreach($parties as $p)
                                 <tr>
                                     <td>
-                                        
-                                        <div >
-                                            <img src="{{URL::to('party/picture/'.$p->picture)}}" class="img-thumbnail pull-left" style=" width: 25%"/>
-                                            <div style="padding-left: 10px" class="pull-left">
+
+                                        <div class="row" >
+                                            <div class="col-lg-6">
+                                                @if(!PartyController::isPartyMember($p->id, Auth::user()->id))
+                                                <a href="#"><img src="{{URL::to('party/picture/'.$p->picture)}}" class="img-thumbnail pull-left" style=" width: 100%"/></a>
+                                                @else
+                                                <a href="{{URL::to('party/manage/'.$p->id)}}"><img src="{{URL::to('party/picture/'.$p->picture)}}" class="img-thumbnail pull-left" style=" width: 100%"/></a>
+                                                @endif
+                                            </div>
+                                            <div class="col-lg-6">
+                                                @if(!PartyController::isPartyMember($p->id, Auth::user()->id))
+                                                <a href="#"><h3 class="c-teal">{{$p->name}}</h3></a>
+                                                @else
                                                 <a href="{{URL::to('party/manage/'.$p->id)}}"><h3 class="c-teal">{{$p->name}}</h3></a>
+                                                @endif
                                                 <hr>
                                                 <h5 class="c-brown">{{$p->description}}</h5>
                                                 <h5 class="c-pumpkin ">{{$p->date_start." until ". $p->date_end}}</h5>
-                                                    {{!PartyController::isPartyMember($p->id, Auth::user()->id)}}
+                                                @if($p->status != "ended")
                                                 @if(!PartyController::isPartyMember($p->id, Auth::user()->id))
                                                 <form action="{{URL::to('party/join-party')}}" method="POST">
                                                     <input type="hidden" name="party_id" value="{{$p->id}}" />
@@ -45,10 +55,12 @@ $user = Auth::user();
                                                     <input type="submit" class="btn btn-danger btn-block" value="Leave" />
                                                 </form>
                                                 @endif
-                                            
+                                                @endif
                                             </div>
+
                                         </div>
-                                    
+
+
                                     </td>
                                 </tr>
                                 @endforeach
@@ -59,7 +71,7 @@ $user = Auth::user();
                 </div>
             </div>
         </div>
-        
+
 
     </div>
     <script>

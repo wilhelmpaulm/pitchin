@@ -8,9 +8,9 @@ $user = Auth::user();
     <!-- Example row of columns -->
     <div class="row">
         <div class="col-md-6">
-            <div class="panel panel-info">
+            <div class="panel panel-danger">
                 <div class="panel-body">
-                    <div id="profilehead" class="text-center c-lightblue fs50">
+                    <div id="profilehead" class="text-center c-wisteria fs50">
                         <i class="fa fa-gift"></i>
                         <p>MY PARTIES</p>
                     </div>
@@ -18,27 +18,114 @@ $user = Auth::user();
                         <table class="table table-condensed table-striped table-responsive">
                             <thead>
                                 <tr >
-                                    <th class="bg-lightblue"></th>
+                                    <th class="bg-wisteria"></th>
                                 </tr>
                             </thead>
                             <tbody>
-                                @foreach($parties as $p)
+                                @foreach($my_parties as $p)
                                 <tr>
                                     <td>
-                                        
-                                        <div>
-                                            <img src="{{URL::to('party/picture/'.$p->picture)}}" class="img-thumbnail pull-left" style=" width: 50%"/>
-                                            <div style="padding-left: 10px" class="pull-left">
+
+                                        <div class="row">
+                                            <div  class="col-md-6">
+                                                <img src="{{URL::to('party/picture/'.$p->picture)}}" class="img-thumbnail pull-left" style=" width:100%"/>
+                                            </div>
+
+                                            <div  class="col-md-6">
+                                               
                                                 <a href="{{URL::to('party/manage/'.$p->id)}}"><h3 class="c-teal">{{$p->name}}</h3></a>
+                                                
+                                                <hr>
+                                                <h5 class="c-brown">{{$p->description}}</h5>
+                                                <h5 class="c-pumpkin ">{{$p->date_start." until ". $p->date_end}}</h5>
+                                                @if($p->status != "ended") 
+                                                <form action="{{URL::to('party/end-party')}}" method="POST">
+                                                    <input type="hidden" value="{{$p->id}}" name="id">
+                                                    <button class="btn btn-default c-alizarin pull-right"><i class="glyphicon glyphicon-off"></i></button>
+
+                                                </form>
+                                                 <form action="{{URL::to('party/delete-party')}}" method="POST">
+                                                    <input type="hidden" value="{{$p->id}}" name="id">
+                                                    <button class="btn btn-default c-alizarin pull-right"><i class="glyphicon glyphicon-trash"></i></button>
+
+                                                </form>
+                                                @endif
+                                            </div>
+                                        </div>
+
+                                    </td>
+                                </tr>
+                                @endforeach
+                            </tbody>
+                        </table>
+
+                    </div>
+                </div>
+            </div>
+            
+            
+            
+            
+            <div class="panel panel-info">
+                <div class="panel-body">
+                    <div id="otherhead" class="text-center c-lightblue fs50">
+                        <i class="fa fa-ticket"></i>
+                        <p>GOING TO</p>
+                    </div>
+                    <div id="otherbody">
+                        <table class="table table-condensed table-striped table-responsive">
+                            <thead>
+                                <tr >
+                                    <th class="bg-lightblue"></th>
+                                </tr>
+                            </thead>
+                            <tbody style="">
+                                @foreach($parties as $p)
+                                @if(!PartyController::isPartyMember($p->id, Auth::user()->id))
+                                
+                                @else
+                                <tr>
+                                    <td>
+
+                                        <div class="row" >
+                                            <div class="col-lg-6">
+                                                @if(!PartyController::isPartyMember($p->id, Auth::user()->id))
+                                                <a href="#"><img src="{{URL::to('party/picture/'.$p->picture)}}" class="img-thumbnail pull-left" style=" width: 100%"/></a>
+                                                @else
+                                                <a href="{{URL::to('party/manage/'.$p->id)}}"><img src="{{URL::to('party/picture/'.$p->picture)}}" class="img-thumbnail pull-left" style=" width: 100%"/></a>
+                                                @endif
+                                            </div>
+                                            <div class="col-lg-6">
+                                                @if(!PartyController::isPartyMember($p->id, Auth::user()->id))
+                                                <a href="#"><h3 class="c-teal">{{$p->name}}</h3></a>
+                                                @else
+                                                <a href="{{URL::to('party/manage/'.$p->id)}}"><h3 class="c-teal">{{$p->name}}</h3></a>
+                                                @endif
                                                 <hr>
                                                 <h5 class="c-brown">{{$p->description}}</h5>
                                                 <h5 class="c-pumpkin ">{{$p->date_start." until ". $p->date_end}}</h5>
                                                 
+                                                @if($p->status != "ended")
+                                                @if(!PartyController::isPartyMember($p->id, Auth::user()->id))
+                                                <form action="{{URL::to('party/join-party')}}" method="POST">
+                                                    <input type="hidden" name="party_id" value="{{$p->id}}" />
+                                                    <input type="submit" class="btn btn-success btn-block" value="Join" />
+                                                </form>
+                                                @else
+                                                <form action="{{URL::to('party/leave-party')}}" method="POST">
+                                                    <input type="hidden" name="party_id" value="{{$p->id}}" />
+                                                    <input type="submit" class="btn btn-danger btn-block" value="Leave" />
+                                                </form>
+                                                @endif
+                                                @endif
                                             </div>
+
                                         </div>
-                                    
+
+
                                     </td>
                                 </tr>
+                                @endif
                                 @endforeach
                             </tbody>
                         </table>
@@ -110,6 +197,11 @@ $user = Auth::user();
 
     </div>
     <script>
+        $("#otherbody").hide();
+
+        $("#otherhead").on("click", function() {
+            $("#otherbody").toggle("slow")
+        });
         $("#profilebody").hide();
 
         $("#profilehead").on("click", function() {
@@ -121,7 +213,7 @@ $user = Auth::user();
         });
 
         $("table").dataTable({
-            "bPaginate": false,
+            "bPaginate": true,
             "bLengthChange": false,
             "bFilter": true,
             "bSort": false,

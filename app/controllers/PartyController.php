@@ -17,6 +17,12 @@ class PartyController extends BaseController {
             $p->picture = "party_" . $p->id . "." . Input::file('picture')->getClientOriginalExtension();
         }
         $p->save();
+
+        $pm = new Party_member;
+        $pm->party_id = $p->id;
+        $pm->user_id = Auth::user()->id;
+        $pm->save();
+        BadgesController::addBadge(Auth::user()->id, 3);
         return Redirect::to("me/my-parties");
     }
 
@@ -38,8 +44,16 @@ class PartyController extends BaseController {
         return Redirect::to("me/my-parties");
     }
 
+   
     public function postDeleteParty() {
         Party::find(Input::get('id'))->delete();
+        return Redirect::back();
+    }
+    
+    public function postEditRole() {
+        $pm = Party_member::where("party_id", "=", Input::get("party_id"))->where("user_id", "=", Auth::user()->id)->first();
+        $pm->role = Input::get("role");
+        $pm->save();
         return Redirect::back();
     }
 
@@ -49,17 +63,18 @@ class PartyController extends BaseController {
         $pm->party_id = Input::get('party_id');
         $pm->user_id = Auth::user()->id;
         $pm->save();
-
-        return Redirect::to('party/manage/'.Input::get('party_id'));
+        BadgesController::addBadge(Auth::user()->id, 2);
+        return Redirect::to('party/manage/' . Input::get('party_id'));
     }
 
     public function postLeaveParty() {
         Party_member::where("party_id", "=", Input::get('party_id'))->where("user_id", "=", Auth::user()->id)->first()->delete();
         return Redirect::to('me/');
     }
-    
-    public function getManage($id){
+
+    public function getManage($id) {
         $data = [
+            "roles" => Role::all(),
             "contributions" => Contribution::all(),
             "party" => Party::find($id),
             "party_members" => Party_member::where("party_id", "=", $id)->get(),
@@ -67,21 +82,29 @@ class PartyController extends BaseController {
             "party_contributions" => Party_contribution::where("party_id", "=", $id)->get(),
             "my_contributions" => Party_contribution::where("party_id", "=", $id)->where("user_id", "=", Auth::user()->id)->get(),
         ];
-        
-        
+
+
         return View::make("party.manage", $data);
     }
+
+    public static function isPartyMember($party_id, $user_id) {
+        $pm = Party_member::where("party_id", "=", $party_id)->get();
+        foreach ($pm as $p) {
+            if ($user_id == $p->user_id) {
+                return true;
+            }
+        }
+        return false;
+    }
     
-    public static function isPartyMember($party_id, $user_id){
-           $pm = Party_member::where("party_id","=", $party_id)->get();
-           foreach($pm as $p){
-               if($user_id == $p->user_id)
-               {
-                   return true;
-               }
-           }
-           return false;
-           
+    
+    
+     public function postEndParty() {
+        $p = Party::find(Input::get('id'));
+        $p->status = "ended";
+        $p->save();
+        BadgesController::loopMembers($p->id);
+        return Redirect::back();
     }
 
 }

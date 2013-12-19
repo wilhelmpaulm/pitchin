@@ -3,12 +3,19 @@
 class Me extends BaseController {
 
     public function getIndex() {
-        return View::make('me.index');
+        $id = Auth::user()->id; 
+        $data= [
+          "reminders" => Reminder::where("user_id", "=", $id)->get(),  
+          "user_badges" => User_badge::where("user_id", "=", $id)->get()  
+        ];
+        
+        return View::make('me.index', $data);
     }
     
     public function getMyParties(){
         $data = [
-          "parties" => Party::where("owner","=", Auth::user()->id)->get(),  
+          "my_parties" => Party::where("owner","=", Auth::user()->id)->get(),  
+          "parties" => Party::all(),  
           "types" => Party_type::all(),  
         ];
         
@@ -16,7 +23,7 @@ class Me extends BaseController {
     }
     public function getOtherParties(){
         $data = [
-          "parties" => Party::all(),  
+          "parties" => Party::where("status", "!=", "ended")->get(),  
           "types" => Party_type::all(),  
         ];
         

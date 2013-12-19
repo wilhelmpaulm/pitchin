@@ -111,8 +111,8 @@
                             <div class="row ">
                                 <div class="col-md-6 col-md-offset-3">
                                     <div class="input-group">
-                                        <span class="input-group-addon  c-lime"><i class="glyphicon glyphicon-envelope"></i></span>
-                                        <input class="form-control  c-lime" placeholder="username"  type="text" name="username" value="" /><br>
+                                        <span class="input-group-addon input-lg c-lime"><i class="glyphicon glyphicon-envelope"></i></span>
+                                        <input class="form-control input-lg  c-lime" placeholder="juan_delacruz@gmail.com"  type="text" name="username" value="" /><br>
                                     </div>
                                 </div>
                             </div>
@@ -120,8 +120,8 @@
                             <div class="row">
                                 <div class="col-md-6 col-md-offset-3">
                                     <div class="input-group">
-                                        <span class="input-group-addon  c-lime"><i class="glyphicon glyphicon-lock "></i></span>
-                                        <input class="form-control  c-lime" placeholder="password" type="password" name="password" value="" /><br>
+                                        <span class="input-group-addon input-lg c-lime"><i class="glyphicon glyphicon-lock "></i></span>
+                                        <input class="form-control input-lg c-lime" placeholder="bayanihan123" type="password" name="password" value="" /><br>
                                     </div>
                                 </div>
                             </div>

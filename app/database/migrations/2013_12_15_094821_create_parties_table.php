@@ -23,6 +23,7 @@ class CreatePartiesTable extends Migration {
             $table->string('date_start')->nullable();
             $table->string('date_end')->nullable();
             $table->string('type')->nullable();
+            $table->string('status')->nullable();
             $table->timestamps();
         });
     }

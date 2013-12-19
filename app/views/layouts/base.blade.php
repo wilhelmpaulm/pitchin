@@ -61,6 +61,8 @@
                         <li><a href="#"><span class="c-carrot"><i class="glyphicon glyphicon-comment"></i> ABOUT</span></a></li>
                         <li><a href="#"><span class="c-greensea"><i class="glyphicon glyphicon-bullhorn"></i> TEAM</span></a></li>
                         @if(Auth::user())
+                        <li><a href="{{URL::to('me/')}}"><span class="c-carrot"><i class="glyphicon glyphicon-user"></i> MY PROFILE</span></a></li>
+
                         <li><a href="{{URL::to('logout')}}"><span class="c-belizehole"><i class="glyphicon glyphicon-lock"></i> LOGOUT</span></a></li>
                         @endif
                     </ul>
